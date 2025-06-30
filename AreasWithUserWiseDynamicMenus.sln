@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34330.188
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AreasWithUserWiseDynamicMenus", "AreasWithUserWiseDynamicMenus\AreasWithUserWiseDynamicMenus.csproj", "{8289FA17-F250-4036-A81E-A91CC1D8086B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8289FA17-F250-4036-A81E-A91CC1D8086B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8289FA17-F250-4036-A81E-A91CC1D8086B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8289FA17-F250-4036-A81E-A91CC1D8086B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8289FA17-F250-4036-A81E-A91CC1D8086B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {FF7AAEFD-0FFB-43BF-BFBA-1E6EE6C36E69}
+	EndGlobalSection
+EndGlobal

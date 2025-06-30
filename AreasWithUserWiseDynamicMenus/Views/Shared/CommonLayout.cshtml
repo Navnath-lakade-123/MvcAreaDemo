@@ -1,0 +1,99 @@
+﻿
+@inject IHttpContextAccessor Accessor
+@using Newtonsoft.Json
+@using AreasWithUserWiseDynamicMenus.Models  
+@{
+    ViewData["Title"] = "CommonLayout";
+    Tbluser u = null;
+
+    var session = Accessor.HttpContext.Session;
+    var userJson = session.GetString("user");
+    var role = session.GetString("role_name");
+
+    if (!string.IsNullOrEmpty(userJson))
+    {
+        u = JsonConvert.DeserializeObject<Tbluser>(userJson);
+    }
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - AreasWithUserWiseDynamicMenus</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <style>
+        a {
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container-fluid">
+            <a href="#" class="navbar-brand">CIIT</a>
+            <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse2">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarCollapse2">
+                <div class="navbar-nav ms-auto">
+                    @if (u != null)
+                    {
+                        <a class="nav-item nav-link active">Hi @u.FullName</a>
+                        <a href="/Account/Logout" class="nav-item nav-link">Log Out</a>
+                    }
+                    else
+                    {
+                        <a href="/Account/Login" class="nav-item nav-link">Login</a>
+                        <a href="#" class="nav-item nav-link">Register</a>
+                    }
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-2">
+                @if (!string.IsNullOrEmpty(role) && u != null)
+                {
+                    <h5>@u.UserName</h5>
+                    <b>(@role)</b>
+
+                    <ul class="list-group">
+                        @if (role == "admin")
+                        {
+                            <li class="list-group-item"><a href="/Admin/Dashboard/Index">Dashboard</a></li>
+                            <li class="list-group-item"><a href="/Admin/TeacherDetail/Index">Teacher</a></li>
+                            <li class="list-group-item"><a href="/Admin/StudentDetail/Index">Student</a></li>
+                        }
+                        else if (role == "teacher")
+                        {
+                            <li class="list-group-item"><a href="/Teacher/Dashboard/Index">Dashboard</a></li>
+                            <li class="list-group-item"><a href="/Teacher/Profile/Index">Profile</a></li>
+                            <li class="list-group-item"><a href="/Teacher/Salary/Index">Salary</a></li>
+                        }
+                        else if (role == "student")
+                        {
+                            <li class="list-group-item"><a href="/Student/Dashboard/Index">Dashboard</a></li>
+                            <li class="list-group-item"><a href="/Student/Profile/Index">Profile</a></li>
+                            <li class="list-group-item"><a href="/Student/Leature/Index">Lecture</a></li>
+                        }
+                        else if (role == "accountant")
+                        {
+                            <li class="list-group-item"><a href="/Accountant/Dashboard/Index">Dashboard</a></li>
+                            <li class="list-group-item"><a href="/Accountant/Adminssion/Index">Admission</a></li>
+                            <li class="list-group-item"><a href="/Accountant/Fee/Index">Fees</a></li>
+                        }
+                    </ul>
+                }
+            </div>
+
+            <div class="col-md-10">
+                @RenderBody()
+            </div>
+        </div>
+    </div>
+</body>
+</html>
